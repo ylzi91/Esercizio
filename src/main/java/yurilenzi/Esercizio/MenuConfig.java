@@ -76,12 +76,9 @@ public class MenuConfig {
     }
 
     @Bean
-    public String menu(){
-        List<Toppings> toppings = Arrays.asList(cheese(), ham(), onions(), pineapple(), salami());
+    public String menu(List <Toppings> toppings, List<Pizza> pizzas, List<Drink> drinks ){
         String toppingStr = toppings.toString();
-        List<Pizza> pizzas = Arrays.asList(pizzaMarg(), hawaiian(), salamiPizza());
         String pizzastr = pizzas.toString();
-        List<Drink> drinks = Arrays.asList(lemonade(), water(), wine());
         String drinksstr = drinks.toString();
         return toppingStr + pizzastr + drinksstr;
     }

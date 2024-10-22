@@ -1,9 +1,9 @@
 package yurilenzi.Esercizio.entities;
 
-public class Toppings extends Menu {
+public class Toppings extends Prodotto {
 
     public Toppings(int calories, double price, String name) {
-        super(name,calories, price);
+        super(name, calories, price);
         this.name = name;
     }
 
@@ -18,8 +18,8 @@ public class Toppings extends Menu {
     @Override
     public String toString() {
         return
-                "\n" + name  +
-                "  calories: " + calories +
-                "  price: " + price ;
+                "\n" + name +
+                        "  calories: " + calories +
+                        "  price: " + price;
     }
 }

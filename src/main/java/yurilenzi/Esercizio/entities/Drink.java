@@ -1,6 +1,6 @@
 package yurilenzi.Esercizio.entities;
 
-public class Drink extends Menu {
+public class Drink extends Prodotto {
     private double litre;
     private boolean alcolic;
     private double percentage = 0;
@@ -40,10 +40,10 @@ public class Drink extends Menu {
     @Override
     public String toString() {
         return
-                 "\n" +name.toUpperCase() +
-                " " + litre +
-                (this.alcolic == true ?  " percentage=" + percentage  : "") +
-                " calories " + calories +
-                " price " + price;
+                "\n" + name.toUpperCase() +
+                        " " + litre +
+                        (this.alcolic == true ? " " + percentage + "%" : "") +
+                        " calories " + calories +
+                        " price " + price;
     }
 }

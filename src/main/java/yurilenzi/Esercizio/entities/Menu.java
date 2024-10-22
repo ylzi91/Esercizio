@@ -1,38 +1,30 @@
 package yurilenzi.Esercizio.entities;
 
-public abstract class Menu {
-    protected String name;
-    protected int calories;
-    protected double price;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Menu(String name, int calories, double price) {
-        this.name = name;
-        this.calories = calories;
-        this.price = price;
+public class Menu {
+    private List<Pizza> pizzas = new ArrayList<>();
+    private List<Toppings> toppings = new ArrayList<>();
+    private List<Drink> drinks = new ArrayList<>();
+
+    public Menu(List<Pizza> pizzas, List<Toppings> toppings, List<Drink> drinks) {
+        this.pizzas = pizzas;
+        this.toppings = toppings;
+        this.drinks = drinks;
     }
 
-    public double getPrice() {
-        return price;
-    }
+    public void vediTutto() {
+        pizzas.forEach(pizza -> {
+            System.out.println(pizza.name);
+            pizza.getToppings().forEach(toppings1 -> {
+                System.out.println(toppings1.name);
+            });
+            System.out.println(pizza.calories);
+        });
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+        toppings.forEach(System.out::println);
 
-    public int getCalories() {
-        return calories;
-    }
-
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
-
-    @Override
-    public String toString() {
-        return "Menu{" +
-                "name='" + name + '\'' +
-                ", calories=" + calories +
-                ", price=" + price +
-                '}';
+        drinks.forEach(System.out::println);
     }
 }

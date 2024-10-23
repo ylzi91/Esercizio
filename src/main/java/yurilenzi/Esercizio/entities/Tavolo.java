@@ -34,4 +34,13 @@ public class Tavolo {
     public void setLibero(boolean libero) {
         this.libero = libero;
     }
+
+    @Override
+    public String toString() {
+        return "Tavolo{" +
+                "numTavolo=" + numTavolo +
+                ", numMassimoCoperti=" + numMassimoCoperti +
+                ", libero=" + libero +
+                '}';
+    }
 }

@@ -1,16 +1,14 @@
 package yurilenzi.Esercizio.entities;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+
 public class Ordine {
 
     private static int numOrd = 0;
+    private final int costoCoperto = 2;
     private StatoOrdine statoOrdine;
     private int numCoperti;
     private LocalDateTime oraAcquisizione;
@@ -18,9 +16,10 @@ public class Ordine {
     private List<Drink> drinks = new ArrayList<>();
     private Tavolo tavolo;
 
-    public Ordine(@Qualifier("nCoperti") int numCoperti, @Qualifier("oraOrdine") LocalDateTime oraAcquisizione, Tavolo tavolo) {
+    public Ordine(int numCoperti, LocalDateTime oraAcquisizione, Tavolo tavolo) throws MaxCopException {
         this.numOrd++;
         this.statoOrdine = StatoOrdine.INCORSO;
+        if (numCoperti > tavolo.getNumMassimoCoperti()) throw new MaxCopException();
         this.numCoperti = numCoperti;
         this.oraAcquisizione = oraAcquisizione;
         this.tavolo = tavolo;
@@ -31,6 +30,10 @@ public class Ordine {
         pizzas.add(pizza);
     }
 
+    public void rimuoviPizza(Pizza pizza) {
+        pizzas.remove(pizza);
+    }
+
     public void aggiungiDrink(Drink drink) {
         drinks.add(drink);
     }
@@ -38,7 +41,7 @@ public class Ordine {
     public double conto() {
         double pizzaSum = this.pizzas.stream().map(Prodotto::getPrice).reduce((double) 0, Double::sum);
         double drinkSum = this.drinks.stream().map(Prodotto::getPrice).reduce((double) 0, Double::sum);
-        double sommaCoperti = numCoperti * 2;
+        double sommaCoperti = numCoperti * costoCoperto;
         return pizzaSum + drinkSum + sommaCoperti;
     }
 

@@ -1,8 +1,11 @@
 package yurilenzi.Esercizio.entities;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class Menu {
     private List<Pizza> pizzas = new ArrayList<>();
     private List<Toppings> toppings = new ArrayList<>();
